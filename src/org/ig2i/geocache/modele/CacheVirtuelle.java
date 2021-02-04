@@ -11,8 +11,8 @@ public class CacheVirtuelle extends Cache
 {
     public CacheVirtuelle() {}
 
-    public CacheVirtuelle(int id, int idProprietaire, String description, String lieu, String etat, String type, String url) {
-        super(id,idProprietaire,description,lieu,etat,type);
+    public CacheVirtuelle(int id, Utilisateur proprietaire, String description, String lieu, String etat, String type, String url) {
+        super(id,proprietaire,description,lieu,etat,type);
         setUrl(url);
     }
 

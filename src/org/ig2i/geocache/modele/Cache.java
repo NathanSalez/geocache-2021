@@ -10,7 +10,7 @@ import java.util.Objects;
 public abstract class Cache
 {
     private int id;
-    private int idProprietaire;
+    private Utilisateur proprietaire;
     private String description;
     private String lieu;
     private String etat;
@@ -18,9 +18,9 @@ public abstract class Cache
 
     public Cache() {}
 
-    public Cache(int id, int idProprietaire, String description, String lieu, String etat, String type) {
+    public Cache(int id, Utilisateur proprietaire, String description, String lieu, String etat, String type) {
         setId(id);
-        setIdProprietaire(idProprietaire);
+        setProprietaire(proprietaire);
         setDescription(description);
         setLieu(lieu);
         setEtat(etat);
@@ -37,10 +37,11 @@ public abstract class Cache
         this.id = id;
     }
 
-    @Column(name = "idProprietaire")
-    public int getIdProprietaire() { return idProprietaire; }
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="idProprietaire")
+    public Utilisateur getProprietaire() { return proprietaire; }
 
-    public void setIdProprietaire(int idProprietaire) { this.idProprietaire = idProprietaire; }
+    public void setProprietaire(Utilisateur proprietaire) { this.proprietaire = proprietaire; }
 
     @Column(name = "lieu", nullable = false, unique = true, length = 45)
     public String getLieu() {
@@ -87,7 +88,7 @@ public abstract class Cache
     public String toString() {
         return "Cache{" +
             "id=" + id +
-            ", idProprietaire=" + idProprietaire +
+            ", proprietaire=" + proprietaire +
             ", description='" + description + '\'' +
             ", lieu='" + lieu + '\'' +
             ", etat='" + etat + '\'' +

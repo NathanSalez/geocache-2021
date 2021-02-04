@@ -12,8 +12,8 @@ public class CachePhysique extends Cache
 
     public CachePhysique() {}
 
-    public CachePhysique(int id, int idProprietaire, String description, String lieu, String etat, String type, double latitude, double longitude) {
-        super(id,idProprietaire,description,lieu,etat,type);
+    public CachePhysique(int id, Utilisateur proprietaire, String description, String lieu, String etat, String type, double latitude, double longitude) {
+        super(id,proprietaire,description,lieu,etat,type);
         setLatitude(latitude);
         setLongitude(longitude);
     }

@@ -1,9 +1,7 @@
 package org.ig2i.geocache.modele;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +12,7 @@ public class Utilisateur
     private String pseudo;
     private String description;
     private String urlPhoto;
+    private Collection<Cache> caches;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -26,13 +25,9 @@ public class Utilisateur
     }
 
     @Column(name = "pseudo", nullable = false, unique = true, length = 45)
-    public String getPseudo() {
-        return pseudo;
-    }
+    public String getPseudo() { return pseudo; }
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
-    }
+    public void setPseudo(String pseudo) { this.pseudo = pseudo; }
 
     @Column(name = "description", nullable = false)
     public String getDescription() {
@@ -50,6 +45,29 @@ public class Utilisateur
 
     public void setUrlPhoto(String urlPhoto) {
         this.urlPhoto = urlPhoto;
+    }
+
+    @OneToMany(mappedBy = "proprietaire")
+    public Collection<Cache> getCaches() { return caches; }
+
+    public void setCaches(Collection<Cache> caches) { this.caches = caches; }
+
+    public boolean removeCache(Cache c) {
+        c.setProprietaire(null);
+        return caches.remove(c);
+    }
+
+    public boolean addCache(Cache c) {
+        if( c == null || this.equals(c.getProprietaire()))
+            return false;
+
+        Utilisateur ancienProprietaire = c.getProprietaire();
+        if( ancienProprietaire != null && !ancienProprietaire.removeCache(c)) {
+            System.out.println("Suppression de l'ancien propriétaire échouée.");
+        }
+
+        c.setProprietaire(this);
+        return caches.add(c);
     }
 
     @Override

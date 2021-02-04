@@ -90,6 +90,7 @@ public class Utilisateur
             ", pseudo='" + pseudo + '\'' +
             ", description='" + description + '\'' +
             ", urlPhoto='" + urlPhoto + '\'' +
+            ", nb de caches=" + caches.size() +
             '}';
     }
 }

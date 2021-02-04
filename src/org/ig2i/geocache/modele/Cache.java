@@ -18,8 +18,7 @@ public abstract class Cache
 
     public Cache() {}
 
-    public Cache(int id, Utilisateur proprietaire, String description, String lieu, String etat, String type) {
-        setId(id);
+    public Cache(Utilisateur proprietaire, String description, String lieu, String etat, String type) {
         setProprietaire(proprietaire);
         setDescription(description);
         setLieu(lieu);

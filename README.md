@@ -4,7 +4,7 @@ Geocache est une application console permettant à un développeur Java de teste
 
 # Pré-requis
   - Intellij Idea 2020.3.2 (le succès de la procédure d'installation n'est pas garanti sur une version plus ancienne).
-  - Docker [(Procédure d'installation)](https://docs.docker.com/engine/install/)
+  - (Optionnel) Docker [(Procédure d'installation)](https://docs.docker.com/engine/install/)
   - Java 11
 
 # Installation
@@ -12,7 +12,7 @@ Geocache est une application console permettant à un développeur Java de teste
 ```sh 
 git clone https://github.com/NathanSalez/geocache-2021.git
 ```
-  2. Lancer la base de données via Docker
+  2. Lancer la base de données via Docker ou la créer à l'aide du script présent dans **sql/creationbdd.sql**
 ```sh
 docker create volume v-mysql
 docker run --name mysql-server -p <port_hote>:3306 -v v-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=<mdp> -d nsalez/geocache-sql:1.0

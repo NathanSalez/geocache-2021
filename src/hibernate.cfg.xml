@@ -10,6 +10,9 @@
     <property name="connection.password">my-secret-pw</property>
 
     <mapping class="org.ig2i.geocache.modele.Utilisateur"/>
+    <mapping class="org.ig2i.geocache.modele.Cache"/>
+    <mapping class="org.ig2i.geocache.modele.CachePhysique"/>
+    <mapping class="org.ig2i.geocache.modele.CacheVirtuelle"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
   </session-factory>

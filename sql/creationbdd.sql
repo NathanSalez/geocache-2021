@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS `geocache`.`CACHE` ;
 CREATE TABLE IF NOT EXISTS `geocache`.`CACHE` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` TEXT NOT NULL,
+  `lieu` VARCHAR(45) DEFAULT 'Lens',
   `latitude` DOUBLE NULL,
   `longitude` DOUBLE NULL,
   `url` VARCHAR(255) NULL,

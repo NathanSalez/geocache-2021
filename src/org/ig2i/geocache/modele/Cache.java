@@ -1,6 +1,8 @@
 package org.ig2i.geocache.modele;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +17,7 @@ public abstract class Cache
     private String lieu;
     private String etat;
     private String type;
+    private Collection<Visite> visites;
 
     public Cache() {}
 
@@ -24,6 +27,7 @@ public abstract class Cache
         setLieu(lieu);
         setEtat(etat);
         setType(type);
+        visites = new HashSet<>();
     }
 
     @Id
@@ -70,6 +74,33 @@ public abstract class Cache
 
     public void setType(String type) { this.type = type; }
 
+    @OneToMany(mappedBy = "cacheVisitee")
+    public Collection<Visite> getVisites() { return visites; }
+
+    public void setVisites(Collection<Visite> visites) { this.visites = visites; }
+
+    public boolean removeVisite(Visite v) {
+        if( visites.remove(v) ) {
+            v.setCacheVisitee(null);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean addVisite(Visite v) {
+        if( v == null || this.equals(v.getCacheVisitee()))
+            return false;
+
+        Cache ancienCacheVisitee = v.getCacheVisitee();
+        if( ancienCacheVisitee != null && !ancienCacheVisitee.removeVisite(v)) {
+            System.out.println("Suppression de l'ancienne cache visitée échouée.");
+        }
+
+        v.setCacheVisitee(this);
+        return visites.add(v);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,6 +123,7 @@ public abstract class Cache
             ", lieu='" + lieu + '\'' +
             ", etat='" + etat + '\'' +
             ", type='" + type + '\'' +
+            ", nb de visites=" + visites.size() +
             '}';
     }
 }

@@ -13,6 +13,7 @@
     <mapping class="org.ig2i.geocache.modele.Cache"/>
     <mapping class="org.ig2i.geocache.modele.CachePhysique"/>
     <mapping class="org.ig2i.geocache.modele.CacheVirtuelle"/>
+    <mapping class="org.ig2i.geocache.modele.Visite"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
   </session-factory>

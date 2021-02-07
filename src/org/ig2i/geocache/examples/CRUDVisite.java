@@ -3,15 +3,19 @@ package org.ig2i.geocache.examples;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.ig2i.geocache.modele.CacheVirtuelle;
+import org.ig2i.geocache.modele.Cache;
 import org.ig2i.geocache.modele.Utilisateur;
+import org.ig2i.geocache.modele.Visite;
+
+import java.util.Date;
 
 /**
  * Afin de pouvoir exécuter ces tests à l'infini, on n'effectue pas de transaction.
  * Par conséquent, notre base de données revient à son état initial après ce test.
  */
-public class CRUDProprietaire {
+public class CRUDVisite {
     private static final SessionFactory ourSessionFactory;
 
     static {
@@ -33,23 +37,21 @@ public class CRUDProprietaire {
         final Session session = getSession();
         //Transaction tx = session.beginTransaction();
         try {
-            // Utilisateur proprietaire, String description, String lieu, String etat, String type, String url
-            CacheVirtuelle cv = new CacheVirtuelle(null,"Cache accessible sur le site de l'architecte claud", "INternet français", "fermée", "traditionnelle","http://localhost");
-            session.persist(cv);
-            System.out.println("Après persistance:");
-            System.out.println(cv);
-            Utilisateur proprio = session.load(Utilisateur.class,1);
-            Utilisateur proprio2 = session.load(Utilisateur.class,2);
-            proprio.addCache(cv);
-            System.out.println("Après ajout de cache sur utilisateur 1");
-            System.out.println(proprio);
-            System.out.println(proprio2);
-            System.out.println(cv);
-            proprio2.addCache(cv);
-            System.out.println("Nouveau proprio (utilisateur 2):");
-            System.out.println(proprio);
-            System.out.println(proprio2);
-            System.out.println(cv);
+            Utilisateur leMaitre = session.load(Utilisateur.class,1);
+            Cache leCache = session.load(Cache.class, 2);
+            System.out.println("Avant création de la nouvelle visite:");
+            System.out.println(leMaitre);
+            System.out.println(leCache);
+            Date lHeure = new Date();
+            String lUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+            String leCommentaire = "Bonjour de Ouagadougou !";
+            // Utilisateur visiteur, Cache cacheVisitee, Date dateHeure, String urlPhoto, String commentaire, Boolean reussi
+            Visite laVisite = new Visite(leMaitre, leCache, lHeure, lUrl, leCommentaire, true);
+            session.persist(laVisite);
+            System.out.println("Après création de la nouvelle visite");
+            System.out.println(leMaitre);
+            System.out.println(leCache);
+            System.out.println(laVisite);
             //tx.commit();
         } finally {
             session.close();

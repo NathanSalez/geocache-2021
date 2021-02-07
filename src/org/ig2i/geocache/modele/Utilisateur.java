@@ -2,6 +2,7 @@ package org.ig2i.geocache.modele;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +14,17 @@ public class Utilisateur
     private String description;
     private String urlPhoto;
     private Collection<Cache> caches;
+    private Collection<Visite> visites;
+
+    public Utilisateur() {}
+
+    public Utilisateur(String pseudo, String description, String urlPhoto) {
+        setPseudo(pseudo);
+        setDescription(description);
+        setUrlPhoto(urlPhoto);
+        caches = new HashSet<>();
+        visites = new HashSet<>();
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -53,8 +65,12 @@ public class Utilisateur
     public void setCaches(Collection<Cache> caches) { this.caches = caches; }
 
     public boolean removeCache(Cache c) {
-        c.setProprietaire(null);
-        return caches.remove(c);
+        if( caches.remove(c) ) {
+            c.setProprietaire(null);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean addCache(Cache c) {
@@ -68,6 +84,33 @@ public class Utilisateur
 
         c.setProprietaire(this);
         return caches.add(c);
+    }
+
+    @OneToMany(mappedBy = "visiteur")
+    public Collection<Visite> getVisites() { return visites; }
+
+    public void setVisites(Collection<Visite> visites) { this.visites = visites; }
+
+    public boolean removeVisite(Visite v) {
+        if( visites.remove(v) ) {
+            v.setVisiteur(null);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean addVisite(Visite v) {
+        if( v == null || this.equals(v.getVisiteur()))
+            return false;
+
+        Utilisateur ancienVisiteur = v.getVisiteur();
+        if( ancienVisiteur != null && !ancienVisiteur.removeVisite(v)) {
+            System.out.println("Suppression de l'ancien visiteur échouée.");
+        }
+
+        v.setVisiteur(this);
+        return visites.add(v);
     }
 
     @Override
@@ -91,6 +134,7 @@ public class Utilisateur
             ", description='" + description + '\'' +
             ", urlPhoto='" + urlPhoto + '\'' +
             ", nb de caches=" + caches.size() +
+            ", nb de visites=" + visites.size() +
             '}';
     }
 }

@@ -14,7 +14,7 @@ git clone https://github.com/NathanSalez/geocache-2021.git
 ```
   2. Lancer la base de données via Docker ou la créer à l'aide du script présent dans **sql/creationbdd.sql**
 ```sh
-docker create volume v-mysql
+docker volume create v-mysql
 docker run --name mysql-server -p <port_hote>:3306 -v v-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=<mdp> -d nsalez/geocache-sql:1.0
 ```
   3. Ouvrir le projet sur Intellij Idea

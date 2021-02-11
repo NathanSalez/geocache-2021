@@ -38,6 +38,7 @@ public class CRUDVisite {
         //Transaction tx = session.beginTransaction();
         try {
             Utilisateur leMaitre = session.load(Utilisateur.class,1);
+            Utilisateur lEsclave = session.load(Utilisateur.class, 2);
             Cache leCache = session.load(Cache.class, 2);
             System.out.println("Avant création de la nouvelle visite:");
             System.out.println(leMaitre);
@@ -52,6 +53,13 @@ public class CRUDVisite {
             System.out.println(leMaitre);
             System.out.println(leCache);
             System.out.println(laVisite);
+            System.out.println("Nouveau visiteur: " + lEsclave);
+            laVisite.setVisiteurSecure(lEsclave);
+            System.out.println("Après changement de visiteur:");
+            System.out.println("Ancien visiteur: " + leMaitre);
+            System.out.println(leCache);
+            System.out.println(laVisite);
+            System.out.println("Nouveau visiteur: " + lEsclave);
             //tx.commit();
         } finally {
             session.close();

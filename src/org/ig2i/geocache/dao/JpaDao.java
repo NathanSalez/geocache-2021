@@ -21,9 +21,7 @@ public abstract class JpaDao<T> implements DAO<T> {
 
     protected EntityManager em;
 
-    //CHECKSTYLE:OFF: ModifierOrderCheck
     protected final static String PERSISTENCE_UNIT = "geocache";
-    //CHECKSTYLE:ON
     protected Class<T> entite;
 
     /**

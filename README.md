@@ -12,12 +12,12 @@ Geocache est une application console permettant à un développeur Java de teste
 ```sh 
 git clone https://github.com/NathanSalez/geocache-2021.git
 ```
-  2. Lancer la base de données via Docker ou la créer à l'aide du script présent dans **sql/creationbdd.sql**
+  2. (Si docker fonctionne) Lancer la base de données via Docker ou la créer à l'aide du script présent dans **sql/creationbdd.sql**
 ```sh
 docker volume create v-mysql
 docker run --name mysql-server -p <port_hote>:3306 -v v-mysql:/var/lib/mysql -d nsalez/geocache-sql:2.0
 ```
   3. Ouvrir le projet sur Intellij Idea
-  4. Modifiez le fichier hibernate.cfg.xml de façon à ce que l'application puisse se connecter à la base de données lancée. Mettre 'my-secret-pw' dans le champ Password.
+  4. Modifiez le fichier hibernate.cfg.xml de façon à ce que l'application puisse se connecter à la base de données lancée. Mettre 'my-secret-pw' dans le champ Password dans le cas où vous utilisez l'image Docker.
   5. Sur Intellij Idea, ajouter un nouveau point d'exécution de type **Application** en cliquant sur "Add Configurations..." ayant pour classe principale **Main**.
   6. Exécutez l'application !

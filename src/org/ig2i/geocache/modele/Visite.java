@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="VISITE", schema = "geocache")
+@NamedQuery(name="findVisitesByDate", query="SELECT v FROM Visite v WHERE DATE(v.dateHeure) = :date")
 public class Visite
 {
     private int id;

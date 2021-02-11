@@ -9,6 +9,10 @@ import java.util.Objects;
 @Table(name="CACHE", schema = "geocache")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "nature", discriminatorType = DiscriminatorType.STRING)
+@NamedQueries({
+    @NamedQuery(name="getCachesByPlace", query = "SELECT c FROM Cache c WHERE c.lieu = :place"),
+    @NamedQuery(name="getCachesByOwnerName",query = "SELECT c FROM Cache c JOIN c.proprietaire p WHERE p.pseudo = :pseudo")
+})
 public abstract class Cache
 {
     private int id;

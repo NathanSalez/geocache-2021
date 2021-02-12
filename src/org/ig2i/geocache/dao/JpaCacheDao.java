@@ -1,10 +1,11 @@
 package org.ig2i.geocache.dao;
 
 import java.util.Collection;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+
 import org.ig2i.geocache.modele.Cache;
+import org.ig2i.geocache.modele.Utilisateur;
+
+import javax.persistence.Query;
 
 /**
  * Représente un DAO de type Cache utilisant comme source de données une bdd.
@@ -68,5 +69,17 @@ public class JpaCacheDao extends JpaDao<Cache> implements CacheDao {
     }
 
 
+    @Override
+    public Collection<Cache> getCachesByPlace(String lieu) {
+        Query query = session.createNamedQuery("getCachesByPlace", Cache.class);
+        query.setParameter("place", lieu);
+        return query.getResultList();
+    }
 
+    @Override
+    public Collection<Cache> getCachesByOwner(Utilisateur proprietaire) {
+        Query query = session.createNamedQuery("getCachesByOwnerName", Cache.class);
+        query.setParameter("pseudo", proprietaire.getPseudo());
+        return query.getResultList();
+    }
 }

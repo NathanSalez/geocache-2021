@@ -29,39 +29,4 @@ public class JpaUtilisateurDao extends JpaDao<Utilisateur> implements Utilisateu
         return instance;
     }
 
-    @Override
-    public boolean deleteAll() {
-        return super.deleteAll();
-    }
-
-    @Override
-    public Collection<Utilisateur> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public Utilisateur find(Integer id) {
-        return super.find(id);
-    }
-
-    @Override
-    public void close() {
-        super.close();
-    }
-
-    @Override
-    public boolean delete(Utilisateur obj) {
-        return super.delete(obj);
-    }
-
-    @Override
-    public boolean update(Utilisateur obj) {
-        return super.update(obj);
-    }
-
-    @Override
-    public boolean create(Utilisateur obj) {
-        return super.create(obj);
-    }
-
 }

@@ -1,6 +1,10 @@
 package org.ig2i.geocache.dao;
 
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.query.Query;
 import org.ig2i.geocache.modele.Visite;
 
 /**
@@ -30,39 +34,10 @@ public class JpaVisiteDao extends JpaDao<Visite> implements VisiteDao {
     }
 
     @Override
-    public boolean deleteAll() {
-        return super.deleteAll();
+    public Collection<Visite> findVisitesByDate(Date d) {
+        Query query = session.createNamedQuery("findVisitesByDate", Visite.class);
+        query.setParameter("date",d);
+        return query.getResultList();
     }
-
-    @Override
-    public Collection<Visite> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public Visite find(Integer id) {
-        return super.find(id);
-    }
-
-    @Override
-    public void close() {
-        super.close();
-    }
-
-    @Override
-    public boolean delete(Visite obj) {
-        return super.delete(obj);
-    }
-
-    @Override
-    public boolean update(Visite obj) {
-        return super.update(obj);
-    }
-
-    @Override
-    public boolean create(Visite obj) {
-        return super.create(obj);
-    }
-
 }
 

@@ -29,39 +29,4 @@ public class JpaCacheVirtuelleDao extends JpaDao<CacheVirtuelle> implements Cach
         return instance;
     }
 
-    @Override
-    public boolean deleteAll() {
-        return super.deleteAll();
-    }
-
-    @Override
-    public Collection<CacheVirtuelle> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public CacheVirtuelle find(Integer id) {
-        return super.find(id);
-    }
-
-    @Override
-    public void close() {
-        super.close();
-    }
-
-    @Override
-    public boolean delete(CacheVirtuelle obj) {
-        return super.delete(obj);
-    }
-
-    @Override
-    public boolean update(CacheVirtuelle obj) {
-        return super.update(obj);
-    }
-
-    @Override
-    public boolean create(CacheVirtuelle obj) {
-        return super.create(obj);
-    }
-
 }

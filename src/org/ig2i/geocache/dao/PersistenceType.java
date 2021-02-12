@@ -5,5 +5,7 @@ package org.ig2i.geocache.dao;
  * @author user
  */
 public enum PersistenceType {
-    JPA
+    JPA,
+    JDBC,
+    MONGODB
 }

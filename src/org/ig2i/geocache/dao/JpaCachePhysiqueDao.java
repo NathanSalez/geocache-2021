@@ -28,40 +28,4 @@ public class JpaCachePhysiqueDao extends JpaDao<CachePhysique> implements CacheP
         }
         return instance;
     }
-
-    @Override
-    public boolean deleteAll() {
-        return super.deleteAll();
-    }
-
-    @Override
-    public Collection<CachePhysique> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public CachePhysique find(Integer id) {
-        return super.find(id);
-    }
-
-    @Override
-    public void close() {
-        super.close();
-    }
-
-    @Override
-    public boolean delete(CachePhysique obj) {
-        return super.delete(obj);
-    }
-
-    @Override
-    public boolean update(CachePhysique obj) {
-        return super.update(obj);
-    }
-
-    @Override
-    public boolean create(CachePhysique obj) {
-        return super.create(obj);
-    }
-
 }

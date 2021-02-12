@@ -33,41 +33,6 @@ public class JpaCacheDao extends JpaDao<Cache> implements CacheDao {
         return instance;
     }
 
-    @Override
-    public boolean deleteAll() {
-        return super.deleteAll();
-    }
-
-    @Override
-    public Collection<Cache> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public Cache find(Integer id) {
-        return super.find(id);
-    }
-
-    @Override
-    public void close() {
-        super.close();
-    }
-
-    @Override
-    public boolean delete(Cache obj) {
-        return super.delete(obj);
-    }
-
-    @Override
-    public boolean update(Cache obj) {
-        return super.update(obj);
-    }
-
-    @Override
-    public boolean create(Cache obj) {
-        return super.create(obj);
-    }
-
 
     @Override
     public Collection<Cache> getCachesByPlace(String lieu) {
